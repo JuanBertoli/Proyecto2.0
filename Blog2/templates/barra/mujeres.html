@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Mujeres{% endblock %}
+
+{% block page_title %}Productos para Mujeres{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+        <h3>Productos para Mujeres</h3>
+        {% for producto in productos %}
+            <div>
+                <h4>{{ producto.nombre }}</h4>
+                <p>Categoría: {{ producto.categoria.nombre }}</p>
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                <p>{{ producto.descripcion }} - ${{ producto.precio }}</p>
+
+                {% if producto.en_oferta %}
+                    <p>¡Oferta!</p>
+                {% endif %}
+
+                {% if producto.categoria.tipo == 'H' %}
+                    <p>Esta es una categoría para hombres.</p>
+                    <!-- Agregar detalles específicos para productos de hombres -->
+                    <!-- Puedes personalizar según tus necesidades -->
+                {% elif producto.categoria.tipo == 'M' %}
+                    <p>Esta es una categoría para mujeres.</p>
+                    <!-- Agregar detalles específicos para productos de mujeres -->
+                    <!-- Puedes personalizar según tus necesidades -->
+                {% elif producto.categoria.tipo == 'N' %}
+                    <p>Esta es una categoría para niños.</p>
+                    <!-- Agregar detalles específicos para productos de niños -->
+                    <!-- Puedes personalizar según tus necesidades -->
+                {% elif producto.categoria.tipo == 'O' %}
+                    <p>Esta es una categoría de ofertas.</p>
+                    <!-- Agregar detalles específicos para productos en oferta -->
+                    <!-- Puedes personalizar según tus necesidades -->
+                {% endif %}
+                
+                <!-- Puedes añadir más detalles según tus necesidades y la categoría -->
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
