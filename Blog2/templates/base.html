@@ -6,8 +6,32 @@
     <title>{% block title %}Tienda de Ropa{% endblock %} - NOSE</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css"> <!-- Enlaza tu hoja de estilos específica si es necesario -->
+
+    <style>
+        body {
+            color: #333; /* Cambia el color del texto principal */
+        }
+
+        .btn-outline-light {
+            color: #ca0b0b !important; /* Cambia el color del texto de los botones */
+        }
+
+        /* Agrega estilos adicionales según sea necesario */
+    </style>
 </head>
 <body>
+    <div class="text-end">
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-light">Cerrar Sesión</button>
+            </form>
+            Bienvenido {{ user.username }}!
+        {% else %}
+            <a type="button" class="btn btn-outline-light" href="{% url 'login' %}">Iniciar Sesión</a>
+            <a type="button" class="btn btn-outline-light" href="{% url 'usuarios:registro' %}">Registrarse</a>
+        {% endif %}
+    </div>
 
     <header class="bg-dark text-light">
         <div class="container">
@@ -56,6 +80,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 </body>
 </html>
